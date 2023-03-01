@@ -2,10 +2,6 @@ import { buildTypesFileString } from "type-genius";
 import { NextApiRequest, NextApiResponse } from "next";
 import mixpanel from "mixpanel";
 
-mixpanel.init("7c307a0580f1ae2e559917e7c39b075d", {
-	debug: process.env.NODE_ENV === "development",
-});
-
 export default async function handler(
 	req: NextApiRequest,
 	res: NextApiResponse
@@ -13,7 +9,12 @@ export default async function handler(
 	if (req.method === "POST") {
 		const { obj, options } = req.body;
 
-		mixpanel.track("Type generation trigger");
+		const mx = mixpanel.init("7c307a0580f1ae2e559917e7c39b075d", {
+			debug: process.env.NODE_ENV === "development",
+			keepAlive: false,
+		});
+
+		mx.track("Type generation trigger");
 
 		let json;
 		if (typeof obj === "string") {
