@@ -1,7 +1,11 @@
 import { type CSSObject } from "@emotion/react";
 
 export const footer: CSSObject = {
+	alignItems: "center",
 	backgroundColor: "black",
+	display: "flex",
+	justifyContent: "space-between",
+	padding: "25px",
 };
 
 export const footerText: CSSObject = {

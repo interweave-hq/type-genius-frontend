@@ -1,6 +1,7 @@
 const css = {
 	color: "white",
 	marginRight: "24px",
+	cursor: "pointer",
 };
 
 const labelStyles = {

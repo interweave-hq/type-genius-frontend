@@ -70,6 +70,12 @@ interface Response {
 	json: string;
 }
 
+const title = "Type Genius";
+const description =
+	"Typescript generator to create interfaces and types from any JSON object.";
+const image = "https://type-genius.carbonology.in/meta.jpg";
+const url = "https://type-genius.carbonology.in";
+
 export default function Home() {
 	const [response, setResponse] = useState<Response>({
 		file: "",
@@ -124,18 +130,21 @@ export default function Home() {
 	return (
 		<>
 			<Head>
+				<meta property="og:title" content={title} />
+				<meta property="og:description" content={description} />
+				<meta property="og:image" content={image} />
+				<meta property="og:url" content={url} />
+				<meta name="twitter:title" content={title} />
+				<meta name="twitter:description" content={description} />
+				<meta name="twitter:image" content={image} />
+				<meta name="twitter:card" content="summary_large_image" />
+				<title>{title}</title>
+				<meta name="description" content={description} />
+				<link rel="canonical" href={url} />
 				<title>Type Genius</title>
-				<meta
-					name="description"
-					content="Typescript generator to create interfaces and types from any JSON object."
-				/>
 				<meta
 					name="viewport"
 					content="width=device-width, initial-scale=1"
-				/>
-				<meta
-					name="og:image"
-					content="https://type-genius.carbonology.in/meta.jpg"
 				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
@@ -239,6 +248,17 @@ export default function Home() {
 						Mike Carbone
 					</a>
 				</p>
+				<a
+					href="https://carbonology.in"
+					target="_blank"
+					rel="noreferrer noopener"
+				>
+					<img
+						alt="Carbonology Interactive"
+						src="/carbonology-logo.png"
+						css={{ filter: "invert(1)", width: "175px" }}
+					/>
+				</a>
 			</footer>
 		</>
 	);
