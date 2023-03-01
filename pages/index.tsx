@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
+import mixpanel from "mixpanel-browser";
 import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { json } from "@codemirror/lang-json";
@@ -76,6 +77,10 @@ const description =
 const image = "https://type-genius.carbonology.in/meta.jpg";
 const url = "https://type-genius.carbonology.in";
 
+mixpanel.init("7c307a0580f1ae2e559917e7c39b075d", {
+	debug: process.env.NODE_ENV === "development",
+});
+
 export default function Home() {
 	const [response, setResponse] = useState<Response>({
 		file: "",
@@ -104,9 +109,11 @@ export default function Home() {
 					"Content-Type": "application/json",
 				},
 			});
+			mixpanel.track("Type generation success");
 			const data = await res.json();
 			setResponse(data);
 		} catch (err) {
+			mixpanel.track("Type generation error");
 			console.log(err);
 			setError("Invalid JSON.");
 		}
