@@ -109,12 +109,15 @@ export default function Home() {
 					"Content-Type": "application/json",
 				},
 			});
+			// failed on the backend
+			if (res.status > 399) {
+				throw new Error("Request failed.");
+			}
 			mixpanel.track("Type generation success");
 			const data = await res.json();
 			setResponse(data);
 		} catch (err) {
 			mixpanel.track("Type generation error");
-			console.log(err);
 			setError("Invalid JSON.");
 		}
 	};
