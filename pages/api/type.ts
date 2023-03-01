@@ -1,6 +1,6 @@
 import { buildTypesFileString } from "type-genius";
 import { NextApiRequest, NextApiResponse } from "next";
-import mixpanel from "mixpanel-browser";
+import mixpanel from "mixpanel";
 
 mixpanel.init("7c307a0580f1ae2e559917e7c39b075d", {
 	debug: process.env.NODE_ENV === "development",
